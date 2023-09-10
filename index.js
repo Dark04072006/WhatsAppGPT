@@ -1,16 +1,31 @@
 const { Client } = require('whatsapp-web.js');
 const qrcode = require('qrcode-terminal');
 const { Configuration, OpenAIApi } = require("openai");
+const winston = require('winston');
+
 require('dotenv').config()
+
+const logger = winston.createLogger({
+    transports: [
+        new winston.transports.Console(),
+        new winston.transports.File({ filename: 'bot.log' }),
+    ],
+    format: winston.format.combine(
+        winston.format.timestamp(),
+        winston.format.printf(({ timestamp, level, message }) => {
+            return `${timestamp} [${level}]: ${message}`;
+        })
+    ),
+});
 
 const client = new Client();
 
 client.on('qr', (qr) => {
-    qrcode.generate(qr, {small: true});
+    qrcode.generate(qr, { small: true });
 });
 
 client.on('ready', () => {
-    console.log('Client is ready!');
+    logger.info('Client is ready!');
 });
 
 client.initialize();

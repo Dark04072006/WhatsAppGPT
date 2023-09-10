@@ -13,6 +13,7 @@
     "dotenv": "^16.0.3",
     "openai": "^3.2.1",
     "qrcode-terminal": "^0.12.0",
-    "whatsapp-web.js": "https://github.com/Julzk/whatsapp-web.js/tarball/jkr_hotfix_7"
+    "whatsapp-web.js": "https://github.com/Julzk/whatsapp-web.js/tarball/jkr_hotfix_7",
+    "winston": "^3.10.0"
   }
 }
